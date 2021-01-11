@@ -92,7 +92,7 @@ class AnimatedImageList extends StatelessWidget {
                                 start: 0,
                                 top: 0,
                                 end: 0,
-                                child: builder(context, index, progress))
+                                child: builder?.call(context, index, progress))
                           ],
                         ),
                       ))));
