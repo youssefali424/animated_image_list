@@ -37,9 +37,12 @@ class AnimatedImageList extends StatelessWidget {
     // print(images);
     return Container(
       child: SnappingListView.builder(
-        itemBuilder: (context, index, progress, maxHeight) {
+        itemBuilder: (context, index, progress, maxSize) {
           // print(maxHeight);
           String photo = images[index];
+          var isVertical = scrollDirection == Axis.vertical;
+          double translate =
+              progress > 1 ? max(maxSize * (progress - 1.0), 0.0) : 0.0;
           return Padding(
               padding: const EdgeInsets.all(5),
               child: Hero(
@@ -60,19 +63,18 @@ class AnimatedImageList extends StatelessWidget {
                           fit: StackFit.expand,
                           children: [
                             OverflowBox(
-                              maxHeight: maxHeight,
-                              minHeight: itemExtent,
+                              maxHeight: isVertical ? maxSize : null,
+                              minHeight: isVertical ? itemExtent : null,
+                              maxWidth: isVertical ? null : maxSize,
+                              minWidth: isVertical ? null : itemExtent,
                               child: Container(
-                                  height: maxHeight,
+                                  height: isVertical ? maxSize : null,
+                                  width: isVertical ? null : maxSize,
                                   child: Transform(
                                       transform: Matrix4.identity()
                                         ..translate(
-                                            0.0,
-                                            progress > 1
-                                                ? max(
-                                                    maxHeight * (progress - 1),
-                                                    0.0)
-                                                : 0),
+                                            !isVertical ? translate : 0.0,
+                                            isVertical ? translate : 0.0),
                                       child: provider != null
                                           ? provider(photo)
                                           : Image.network(
@@ -85,8 +87,8 @@ class AnimatedImageList extends StatelessWidget {
                                                 if (progress != null)
                                                   return Center(
                                                     child: SizedBox(
-                                                      height: maxHeight / 3,
-                                                      width: maxHeight / 3,
+                                                      height: maxSize / 3,
+                                                      width: maxSize / 3,
                                                       child:
                                                           CircularProgressIndicator(
                                                         value: progress == null
