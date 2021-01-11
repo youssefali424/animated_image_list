@@ -46,6 +46,7 @@ class _SnappingListViewState extends State<SnappingListView>
   Orientation currentOrientation;
   Size currSize;
   ScrollController controller;
+  bool rotated;
   @override
   void initState() {
     super.initState();
@@ -63,13 +64,13 @@ class _SnappingListViewState extends State<SnappingListView>
   }
 
   didChangeMetrics() {
-    print("change dummy " + window.physicalSize.toString());
     if (currSize.width != window.physicalSize.width ||
         currSize.height != window.physicalSize.height) {
       setState(() {
         dummy = (dummy == DummyChangePhysics.H
             ? DummyChangePhysics.L
             : DummyChangePhysics.H);
+        rotated = true;
       });
       final startPadding = widget.scrollDirection == Axis.horizontal
           ? widget.padding.left
@@ -81,9 +82,12 @@ class _SnappingListViewState extends State<SnappingListView>
   didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.maxExtent != widget.maxExtent) {
-      dummy = (dummy == DummyChangePhysics.H
-          ? DummyChangePhysics.L
-          : DummyChangePhysics.H);
+      if (!rotated) {
+        dummy = (dummy == DummyChangePhysics.H
+            ? DummyChangePhysics.L
+            : DummyChangePhysics.H);
+      } else
+        rotated = false;
     }
   }
 
