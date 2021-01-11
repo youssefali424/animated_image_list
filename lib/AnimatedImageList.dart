@@ -29,7 +29,8 @@ class AnimatedImageList extends StatelessWidget {
       this.itemExtent = 150,
       this.maxExtent = 400,
       this.scrollDirection = Axis.vertical})
-      : super(key: key);
+      : assert(images != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class AnimatedImageList extends StatelessWidget {
                         onTap: () {
                           Navigator.of(context).push(TransparentRoute(
                             builder: (BuildContext context) =>
-                                PhotoViewerArbnbPage(photo,index),
+                                PhotoViewerArbnbPage(photo, index),
                           ));
                         },
                         child: Stack(
