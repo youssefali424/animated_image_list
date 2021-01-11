@@ -18,8 +18,8 @@ class AnimatedImageList extends StatelessWidget {
   final ProviderBuilder placeHolder;
   final ItemBuilder builder;
   final Axis scrollDirection;
-  final int itemExtent;
-  final int maxExtent;
+  final double itemExtent;
+  final double maxExtent;
   const AnimatedImageList(
       {Key key,
       this.images,
@@ -34,6 +34,7 @@ class AnimatedImageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(images);
     return Container(
       child: SnappingListView.builder(
         itemBuilder: (context, index, progress, maxHeight) {
@@ -60,7 +61,7 @@ class AnimatedImageList extends StatelessWidget {
                           children: [
                             OverflowBox(
                               maxHeight: maxHeight,
-                              minHeight: 150,
+                              minHeight: itemExtent,
                               child: Container(
                                   height: maxHeight,
                                   child: Transform(
@@ -77,30 +78,40 @@ class AnimatedImageList extends StatelessWidget {
                                           : Image.network(
                                               photo,
                                               fit: BoxFit.fill,
+                                              // height: maxHeight,
+                                              // width: 200,
                                               loadingBuilder:
-                                                  (context, _, progress) =>
-                                                      CircularProgressIndicator(
-                                                value: progress
-                                                        .cumulativeBytesLoaded /
-                                                    progress.expectedTotalBytes,
-                                              ),
+                                                  (context, image, progress) {
+                                                if (progress != null)
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      height: maxHeight / 3,
+                                                      width: maxHeight / 3,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        value: progress == null
+                                                            ? 0
+                                                            : (progress.cumulativeBytesLoaded ??
+                                                                    0) /
+                                                                (progress
+                                                                        .expectedTotalBytes ??
+                                                                    1.0),
+                                                      ),
+                                                    ),
+                                                  );
+                                                return image;
+                                              },
                                             ))),
                             ),
-                            Positioned.directional(
-                                textDirection: TextDirection.ltr,
-                                bottom: 0,
-                                start: 0,
-                                top: 0,
-                                end: 0,
-                                child: builder?.call(context, index, progress))
+                            builder?.call(context, index, progress)
                           ],
                         ),
                       ))));
         },
         itemCount: images.length,
         scrollDirection: scrollDirection,
-        itemExtent: 150,
-        maxExtent: 400,
+        itemExtent: itemExtent,
+        maxExtent: maxExtent,
       ),
     );
   }
