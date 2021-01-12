@@ -4,9 +4,10 @@
 
 Flutter Animated image list with parallax effect and image lightbox .
 
-<iframe width="80%" height="315"
-src="https://www.youtube.com/embed/EJ7FQjdHYkA?autoplay=1&mute=1">
-</iframe>
+<video width="320" height="240" controls>
+  <source src="https://www.youtube.com/embed/EJ7FQjdHYkA?autoplay=1&mute=1" type="video/ogg">
+Your browser does not support the video tag.
+</video>
 
 [<img src="https://img.youtube.com/vi/MGTt9eqJioc/0.jpg" width="49%">](https://youtu.be/MGTt9eqJioc) [<img src="https://img.youtube.com/vi/gTqUJB75Scc/0.jpg" width="49%">](https://youtu.be/gTqUJB75Scc)
 
