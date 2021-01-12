@@ -3,6 +3,7 @@ library animated_image_list;
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import "package:flutter/widgets.dart";
+import 'package:transparent_image/transparent_image.dart';
 import "dart:math";
 import 'SnappingListView.dart';
 import 'photoViewerArbnb/PhotoViewerArbnb_page.dart';
@@ -100,9 +101,21 @@ class AnimatedImageList extends StatelessWidget {
                                                   );
                                                 return image;
                                               },
+                                              errorBuilder:
+                                                  (BuildContext context,
+                                                      Object exception,
+                                                      StackTrace stackTrace) {
+                                                return Image(
+                                                  image: placeHolder
+                                                          ?.call(photo) ??
+                                                      MemoryImage(
+                                                          kTransparentImage),
+                                                );
+                                              },
                                             ))),
                             ),
-                            builder?.call(context, index, progress)
+                            builder?.call(context, index, progress) ??
+                                Container()
                           ],
                         ),
                       ))));
