@@ -4,10 +4,7 @@
 
 Flutter Animated image list with parallax effect and image lightbox .
 
-<video width="320" height="240" controls>
-  <source src="https://www.youtube.com/embed/EJ7FQjdHYkA?autoplay=1&mute=1" type="video/ogg">
-Your browser does not support the video tag.
-</video>
+[![Animated Image list](https://yt-embed.herokuapp.com/embed?v=EJ7FQjdHYkA)](https://www.youtube.com/watch?v=EJ7FQjdHYkA "Animated Image lis")
 
 [<img src="https://img.youtube.com/vi/MGTt9eqJioc/0.jpg" width="49%">](https://youtu.be/MGTt9eqJioc) [<img src="https://img.youtube.com/vi/gTqUJB75Scc/0.jpg" width="49%">](https://youtu.be/gTqUJB75Scc)
 
