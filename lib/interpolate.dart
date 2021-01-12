@@ -111,4 +111,3 @@ double interpolate(double value, InterpolateConfig config) {
 
   return output;
 }
-// cl

@@ -97,7 +97,6 @@ class _SnappingListViewState extends State<SnappingListView>
         ? widget.padding.left
         : widget.padding.top;
     return OrientationBuilder(builder: (_, orientation) {
-      // print("build");
       return LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
         var maxSize = min(

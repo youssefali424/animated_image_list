@@ -34,7 +34,6 @@ class AnimatedImageList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print(images);
     return Container(
       child: SnappingListView.builder(
         itemBuilder: (context, index, progress, maxSize) {
@@ -80,8 +79,6 @@ class AnimatedImageList extends StatelessWidget {
                                           : Image.network(
                                               photo,
                                               fit: BoxFit.fill,
-                                              // height: maxHeight,
-                                              // width: 200,
                                               loadingBuilder:
                                                   (context, image, progress) {
                                                 if (progress != null)

@@ -97,8 +97,8 @@ class PhotoViewerArbnbScreenState extends State<PhotoViewerArbnbScreen>
         });
       },
       onMoveEnd: (details) {
-        if (scale <= 0.80) {
-          Navigator.canPop(context) ? Navigator.pop(context) : null;
+        if (scale <= 0.80 && Navigator.canPop(context)) {
+          Navigator.pop(context);
         } else {
           this._runAnimation();
         }
