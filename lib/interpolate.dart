@@ -59,6 +59,10 @@ void checkMinElements(String name, List<double> arr) {
 
 enum Extrapolate { EXTEND, CLAMP, IDENTITY }
 
+///  config for [interpolate] function 
+///  [Extrapolate] clamp ,identity or extend from left or right 
+/// [inputRange] is the list from which the current value is interpolated
+/// [outputRange] is the list from which the output value is selected and returned
 class InterpolateConfig {
   List<double> inputRange;
   List<double> outputRange;
@@ -70,7 +74,7 @@ class InterpolateConfig {
       this.extrapolateLeft,
       this.extrapolateRight});
 }
-
+/// interpolate two arrays based on [value]
 double interpolate(double value, InterpolateConfig config) {
   var inputRange = config.inputRange;
   var outputRange = config.outputRange;

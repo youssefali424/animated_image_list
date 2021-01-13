@@ -7,7 +7,7 @@ class PhotoViewerArbnbPage extends StatefulWidget {
   final ProviderBuilder provider;
   final ProviderBuilder placeHolder;
   final int index;
-  PhotoViewerArbnbPage(this.url,this.index, {this.provider, this.placeHolder});
+  PhotoViewerArbnbPage(this.url, this.index, {this.provider, this.placeHolder});
   @override
   _PhotoViewerArbnbState createState() => _PhotoViewerArbnbState();
 }

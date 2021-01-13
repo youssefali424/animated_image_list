@@ -15,7 +15,7 @@ Flutter Animated image list with parallax effect and image lightbox .
 Add the package to your pubspec.yaml:
 
 ```yaml
-animated_image_list: ^0.0.1
+animated_image_list: ^0.5.0
 ```
 
 In your dart file, import the library:

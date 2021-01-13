@@ -21,6 +21,16 @@ class AnimatedImageList extends StatelessWidget {
   final Axis scrollDirection;
   final double itemExtent;
   final double maxExtent;
+  /// builder for snapping effect list with two static sizes
+  /// [scrollDirection] scroll direction for list horizontal or isVertical
+  /// [itemExtent] not selected item size required to calculate animations
+  /// [maxExtent] selected item size required to calculate animations
+  /// [provider] Function which maps an url or image string to an image provider
+  /// [images] 	A list of images url to display in the list by default it accepts urls
+  ///  if custom image needed use provider paramter
+  /// [builder] builder function for each item
+  /// [placeHolder] 	Optional function which returns default placeholder 
+  /// for lightbox and error widget if image fails to load
   const AnimatedImageList(
       {Key key,
       this.images,

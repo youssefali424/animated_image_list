@@ -3,7 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 enum DummyChangePhysics { L, H }
-
+/// physisc class for snapping list use two class because of flutter not changing 
+/// physics dynamically as stated her https://master-api.flutter.dev/flutter/widgets/Scrollable/physics.html 
+/// "The physics can be changed dynamically, but new physics will only take effect if the class of the provided
+///  object changes. Merely constructing a new instance with a different configuration is insufficient to cause
+///  the physics to be reapplied"
 class DummyHScrollPhysics extends ScrollPhysics {
   final double mainAxisStartPadding;
   final double itemExtent;

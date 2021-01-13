@@ -11,7 +11,6 @@ typedef Builder = Widget Function(
 
 class SnappingListView extends StatefulWidget {
   final Axis scrollDirection;
-  final ScrollController controller;
   final Builder itemBuilder;
   final int itemCount;
   final double itemExtent;
@@ -19,9 +18,15 @@ class SnappingListView extends StatefulWidget {
   final ValueChanged<int> onItemChanged;
 
   final EdgeInsets padding;
+  /// builder for snapping effect list with two static sizes
+  /// [scrollDirection] scroll direction for list horizontal or isVertical
+  /// [itemExtent] not selected item size required to calculate animations
+  /// [maxExtent] selected item size required to calculate animations
+  /// [onItemChanged] caled when snapped to item 
+  /// [padding] default padding for list
+  /// [itemBuilder] builder function for each item
   SnappingListView.builder(
       {this.scrollDirection,
-      this.controller,
       @required this.itemBuilder,
       this.itemCount,
       @required this.itemExtent,

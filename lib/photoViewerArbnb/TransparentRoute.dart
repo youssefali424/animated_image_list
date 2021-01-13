@@ -1,5 +1,7 @@
 import 'package:flutter/widgets.dart';
 
+/// transparent route to handle lightbox effect, parent screen
+/// visible in background 
 class TransparentRoute extends PageRoute<void> {
   TransparentRoute({
     @required this.builder,
