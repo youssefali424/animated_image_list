@@ -2,6 +2,8 @@
 
 [![Pub](https://img.shields.io/pub/v/animated_image_list.svg)](https://pub.dev/packages/animated_image_list)
 
+<div style="height: 0; padding-bottom: calc(100.00% + 35px); position:relative; width: 100%;"><iframe allow="autoplay; gyroscope;" allowfullscreen height="100%" referrerpolicy="strict-origin" src="https://www.kapwing.com/e/60080a3b947bb40029539d46" style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%" title="Embedded content made with Kapwing" width="100%"></iframe></div>
+
 Flutter Animated image list with parallax effect and image lightbox .
 
 [![Animated Image list](https://yt-embed.herokuapp.com/embed?v=EJ7FQjdHYkA)](https://www.youtube.com/watch?v=EJ7FQjdHYkA "Animated Image lis")
