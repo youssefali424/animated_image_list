@@ -5,7 +5,7 @@
 Flutter Animated image list with parallax effect and image lightbox .
 
 <!-- [![Animated Image list](https://yt-embed.herokuapp.com/embed?v=EJ7FQjdHYkA)](https://www.youtube.com/watch?v=EJ7FQjdHYkA "Animated Image lis") -->
-<img src="https://cdn.kapwing.com/final_60080a3b947bb40029539d46_634761.gif">
+<img src="mainGif.gif">
 
 [<img src="https://img.youtube.com/vi/MGTt9eqJioc/0.jpg" width="49%">](https://youtu.be/MGTt9eqJioc) [<img src="https://img.youtube.com/vi/gTqUJB75Scc/0.jpg" width="49%">](https://youtu.be/gTqUJB75Scc)
 
