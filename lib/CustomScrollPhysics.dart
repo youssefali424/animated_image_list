@@ -13,14 +13,14 @@ class DummyHScrollPhysics extends ScrollPhysics {
   final double itemExtent;
 
   const DummyHScrollPhysics({
-    ScrollPhysics parent,
+    ScrollPhysics? parent,
     this.mainAxisStartPadding = 0.0,
-    @required this.itemExtent,
+    required this.itemExtent,
   }) : super(
           parent: parent,
         );
   @override
-  DummyHScrollPhysics applyTo(ScrollPhysics ancestor) {
+  DummyHScrollPhysics applyTo(ScrollPhysics? ancestor) {
     return DummyHScrollPhysics(
       parent: buildParent(ancestor),
       mainAxisStartPadding: mainAxisStartPadding,
@@ -46,13 +46,13 @@ class DummyHScrollPhysics extends ScrollPhysics {
   }
 
   @override
-  Simulation createBallisticSimulation(
+  Simulation? createBallisticSimulation(
       ScrollMetrics position, double velocity) {
     if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
         (velocity >= 0.0 && position.pixels >= position.maxScrollExtent))
       return super.createBallisticSimulation(position, velocity);
     final Tolerance tolerance = this.tolerance;
-    final double target = _getTargetPixels(position, tolerance, velocity);
+    final double target = _getTargetPixels(position as ScrollPosition, tolerance, velocity);
     if (target != position.pixels)
       return ScrollSpringSimulation(spring, position.pixels, target, velocity,
           tolerance: tolerance);
@@ -68,14 +68,14 @@ class DummyVScrollPhysics extends ScrollPhysics {
   final double itemExtent;
 
   const DummyVScrollPhysics({
-    ScrollPhysics parent,
+    ScrollPhysics? parent,
     this.mainAxisStartPadding = 0.0,
-    @required this.itemExtent,
+    required this.itemExtent,
   }) : super(
           parent: parent,
         );
   @override
-  DummyVScrollPhysics applyTo(ScrollPhysics ancestor) {
+  DummyVScrollPhysics applyTo(ScrollPhysics? ancestor) {
     return DummyVScrollPhysics(
       parent: buildParent(ancestor),
       mainAxisStartPadding: mainAxisStartPadding,
@@ -101,13 +101,13 @@ class DummyVScrollPhysics extends ScrollPhysics {
   }
 
   @override
-  Simulation createBallisticSimulation(
+  Simulation? createBallisticSimulation(
       ScrollMetrics position, double velocity) {
     if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
         (velocity >= 0.0 && position.pixels >= position.maxScrollExtent))
       return super.createBallisticSimulation(position, velocity);
     final Tolerance tolerance = this.tolerance;
-    final double target = _getTargetPixels(position, tolerance, velocity);
+    final double target = _getTargetPixels(position as ScrollPosition, tolerance, velocity);
     if (target != position.pixels)
       return ScrollSpringSimulation(spring, position.pixels, target, velocity,
           tolerance: tolerance);

@@ -26,12 +26,12 @@ double interpolateInternalSingle(double value, List<double> inputRange,
 }
 
 double interpolateInternal(
-    double value, List<double> inputRange, List<double> outputRange,
+    double? value, List<double> inputRange, List<double> outputRange,
     {int offset = 0}) {
   if (inputRange.length - offset == 2) {
-    return interpolateInternalSingle(value, inputRange, outputRange, offset);
+    return interpolateInternalSingle(value!, inputRange, outputRange, offset);
   }
-  return value < inputRange[offset + 1]
+  return value! < inputRange[offset + 1]
       ? interpolateInternalSingle(value, inputRange, outputRange, offset)
       : interpolateInternal(value, inputRange, outputRange, offset: offset + 1);
 }
@@ -67,15 +67,15 @@ class InterpolateConfig {
   List<double> inputRange;
   List<double> outputRange;
   Extrapolate extrapolate;
-  Extrapolate extrapolateLeft;
-  Extrapolate extrapolateRight;
+  Extrapolate? extrapolateLeft;
+  Extrapolate? extrapolateRight;
   InterpolateConfig(this.inputRange, this.outputRange,
       {this.extrapolate = Extrapolate.EXTEND,
       this.extrapolateLeft,
       this.extrapolateRight});
 }
 /// interpolate two arrays based on [value]
-double interpolate(double value, InterpolateConfig config) {
+double interpolate(double? value, InterpolateConfig config) {
   var inputRange = config.inputRange;
   var outputRange = config.outputRange;
   var extrapolate = config.extrapolate;
@@ -89,26 +89,26 @@ double interpolate(double value, InterpolateConfig config) {
 
   var left = extrapolateLeft ?? extrapolate;
   var right = extrapolateRight ?? extrapolate;
-  var output = interpolateInternal(value, inputRange, outputRange);
+  double? output = interpolateInternal(value, inputRange, outputRange);
 
   if (left == Extrapolate.EXTEND) {
   } else if (left == Extrapolate.CLAMP) {
-    if (value < inputRange[0]) {
+    if (value! < inputRange[0]) {
       output = outputRange[0];
     }
   } else if (left == Extrapolate.IDENTITY) {
-    if (value < inputRange[0]) {
+    if (value! < inputRange[0]) {
       output = value;
     }
   }
 
   if (right == Extrapolate.EXTEND) {
   } else if (right == Extrapolate.CLAMP) {
-    if (value > inputRange[inputRange.length - 1]) {
+    if (value! > inputRange[inputRange.length - 1]) {
       output = outputRange[outputRange.length - 1];
     }
   } else if (right == Extrapolate.IDENTITY) {
-    if (value > inputRange[inputRange.length - 1]) {
+    if (value! > inputRange[inputRange.length - 1]) {
       output = value;
     }
   }

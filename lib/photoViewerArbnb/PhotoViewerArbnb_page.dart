@@ -4,8 +4,8 @@ import 'PhotoViewerArbnb_screen.dart';
 class PhotoViewerArbnbPage extends StatefulWidget {
   static const String routeName = '/PhotoViewerArbnb';
   final String url;
-  final ProviderBuilder provider;
-  final ProviderBuilder placeHolder;
+  final ProviderBuilder? provider;
+  final ProviderBuilder? placeHolder;
   final int index;
   PhotoViewerArbnbPage(this.url, this.index, {this.provider, this.placeHolder});
   @override

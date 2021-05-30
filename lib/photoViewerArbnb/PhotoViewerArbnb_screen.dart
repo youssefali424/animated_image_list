@@ -1,18 +1,18 @@
 import 'dart:developer';
 import 'dart:math' as Math;
+import 'package:animated_image_list/photoViewerArbnb/transparent_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_x_detector/gesture_x_detector.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 typedef ProviderBuilder = ImageProvider Function(String url);
 
 class PhotoViewerArbnbScreen extends StatefulWidget {
   PhotoViewerArbnbScreen(this.imgUrl, this.index,
-      {Key key, this.provider, this.placeHolder})
+      {Key? key, this.provider, this.placeHolder})
       : super(key: key);
   final String imgUrl;
-  final ProviderBuilder provider;
-  final ProviderBuilder placeHolder;
+  final ProviderBuilder? provider;
+  final ProviderBuilder? placeHolder;
   final int index;
   @override
   PhotoViewerArbnbScreenState createState() {
@@ -28,12 +28,12 @@ class Position {
 
 class PhotoViewerArbnbScreenState extends State<PhotoViewerArbnbScreen>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   PhotoViewerArbnbScreenState();
   Position position = Position(0, 0);
   double scale = 1;
   BorderRadius borderRadius = BorderRadius.circular(0.0);
-  Animation<double> _animation;
+  late Animation<double> _animation;
   double opacity = 1;
   @override
   void initState() {
@@ -122,7 +122,7 @@ class PhotoViewerArbnbScreenState extends State<PhotoViewerArbnbScreen>
                 child: Hero(
                   tag: "$url-${widget.index}",
                   child: widget.provider != null
-                      ? widget.provider(url)
+                      ? widget.provider!(url) as Widget
                       : FadeInImage(
                           image: NetworkImage(url),
                           placeholder: MemoryImage(kTransparentImage),

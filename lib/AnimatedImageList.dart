@@ -1,23 +1,23 @@
 library animated_image_list;
 
 import 'dart:ui';
+import 'package:animated_image_list/photoViewerArbnb/PhotoViewerArbnb_page.dart';
+import 'package:animated_image_list/photoViewerArbnb/PhotoViewerArbnb_screen.dart';
+import 'package:animated_image_list/photoViewerArbnb/TransparentRoute.dart';
+import 'package:animated_image_list/photoViewerArbnb/transparent_image.dart';
 import 'package:flutter/material.dart';
 import "package:flutter/widgets.dart";
-import 'package:transparent_image/transparent_image.dart';
 import "dart:math";
 import 'SnappingListView.dart';
-import 'photoViewerArbnb/PhotoViewerArbnb_page.dart';
-import 'photoViewerArbnb/PhotoViewerArbnb_screen.dart';
-import 'photoViewerArbnb/TransparentRoute.dart';
 
 typedef ItemBuilder = Widget Function(
     BuildContext context, int index, double progress);
 
 class AnimatedImageList extends StatelessWidget {
   final List<String> images;
-  final ProviderBuilder provider;
-  final ProviderBuilder placeHolder;
-  final ItemBuilder builder;
+  final ProviderBuilder? provider;
+  final ProviderBuilder? placeHolder;
+  final ItemBuilder? builder;
   final Axis scrollDirection;
   final double itemExtent;
   final double maxExtent;
@@ -33,8 +33,8 @@ class AnimatedImageList extends StatelessWidget {
   /// [placeHolder] 	Optional function which returns default placeholder
   /// for lightbox and error widget if image fails to load
   const AnimatedImageList(
-      {Key key,
-      this.images,
+      {Key? key,
+      required this.images,
       this.provider,
       this.placeHolder,
       this.builder,
@@ -92,7 +92,7 @@ class AnimatedImageList extends StatelessWidget {
                                             !isVertical ? translate : 0.0,
                                             isVertical ? translate : 0.0),
                                       child: provider != null
-                                          ? provider(photo)
+                                          ? provider!(photo) as Widget?
                                           : Image.network(
                                               photo,
                                               fit: BoxFit.fill,
@@ -105,13 +105,11 @@ class AnimatedImageList extends StatelessWidget {
                                                       width: maxSize / 3,
                                                       child:
                                                           CircularProgressIndicator(
-                                                        value: progress == null
-                                                            ? 0
-                                                            : (progress.cumulativeBytesLoaded ??
-                                                                    0) /
-                                                                (progress
-                                                                        .expectedTotalBytes ??
-                                                                    1.0),
+                                                        value: (progress
+                                                                .cumulativeBytesLoaded) /
+                                                            (progress
+                                                                    .expectedTotalBytes ??
+                                                                1.0),
                                                       ),
                                                     ),
                                                   );
@@ -120,7 +118,7 @@ class AnimatedImageList extends StatelessWidget {
                                               errorBuilder:
                                                   (BuildContext context,
                                                       Object exception,
-                                                      StackTrace stackTrace) {
+                                                      StackTrace? stackTrace) {
                                                 return Image(
                                                   image: placeHolder
                                                           ?.call(photo) ??

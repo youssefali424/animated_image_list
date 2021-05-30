@@ -1,18 +1,17 @@
 name: animated_image_list
 description: Flutter Animated image list with parallax effect and image lightbox .
-version: 0.5.1
+version: 1.0.0
 author: Youssef Ali
 homepage: https://github.com/youssefali424/animated_image_list
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  gesture_x_detector: ^0.0.5
-  transparent_image: ^1.0.0
+  gesture_x_detector: 1.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:

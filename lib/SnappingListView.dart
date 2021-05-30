@@ -10,31 +10,32 @@ typedef Builder = Widget Function(
     BuildContext context, int index, double progress, double maxHeight);
 
 class SnappingListView extends StatefulWidget {
-  final Axis scrollDirection;
+  final Axis? scrollDirection;
   final Builder itemBuilder;
-  final int itemCount;
+  final int? itemCount;
   final double itemExtent;
   final double maxExtent;
-  final ValueChanged<int> onItemChanged;
+  final ValueChanged<int>? onItemChanged;
 
   final EdgeInsets padding;
+
   /// builder for snapping effect list with two static sizes
   /// [scrollDirection] scroll direction for list horizontal or isVertical
   /// [itemExtent] not selected item size required to calculate animations
   /// [maxExtent] selected item size required to calculate animations
-  /// [onItemChanged] caled when snapped to item 
+  /// [onItemChanged] caled when snapped to item
   /// [padding] default padding for list
   /// [itemBuilder] builder function for each item
   SnappingListView.builder(
       {this.scrollDirection,
-      @required this.itemBuilder,
+      required this.itemBuilder,
       this.itemCount,
-      @required this.itemExtent,
+      required this.itemExtent,
       this.onItemChanged,
       this.padding = const EdgeInsets.only(top: 0),
-      @required this.maxExtent})
-      : assert(itemExtent != null && itemExtent > 0),
-        assert(maxExtent != null && maxExtent > 0),
+      required this.maxExtent})
+      : assert(itemExtent > 0),
+        assert(maxExtent > 0),
         assert(maxExtent > itemExtent);
 
   @override
@@ -46,24 +47,24 @@ class _SnappingListViewState extends State<SnappingListView>
   int _lastItem = 0;
   double position = 0.0;
   double defaultPadding = 0;
-  StreamController<double> currentPositionStream;
+  late StreamController<double> currentPositionStream;
   DummyChangePhysics dummy = DummyChangePhysics.H;
-  Orientation currentOrientation;
-  Size currSize;
-  ScrollController controller;
-  bool rotated;
+  Orientation? currentOrientation;
+  late Size currSize;
+  ScrollController? controller;
+  late bool rotated;
   @override
   void initState() {
     super.initState();
     currentPositionStream = StreamController.broadcast()..add(position);
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     currSize = window.physicalSize;
     controller = ScrollController();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
     currentPositionStream.close();
     super.dispose();
   }
@@ -80,7 +81,7 @@ class _SnappingListViewState extends State<SnappingListView>
       final startPadding = widget.scrollDirection == Axis.horizontal
           ? widget.padding.left
           : widget.padding.top;
-      controller.jumpTo(startPadding + defaultPadding);
+      controller!.jumpTo(startPadding + defaultPadding);
     }
   }
 
@@ -145,10 +146,10 @@ class _SnappingListViewState extends State<SnappingListView>
   _buildList(double startPadding, double maxSize, double remain,
       Orientation orientation) {
     return ListView.builder(
-        scrollDirection: widget.scrollDirection,
+        scrollDirection: widget.scrollDirection!,
         controller: controller,
         itemBuilder: (context, index) {
-          if (index > widget.itemCount - 1) {
+          if (index > widget.itemCount! - 1) {
             if (remain < 0) {
               return Container();
             }
@@ -159,10 +160,10 @@ class _SnappingListViewState extends State<SnappingListView>
 
           var currItem = _lastItem;
           if (currItem >= index - 1.0 && currItem <= index + 1.0) {
-            return StreamBuilder(
+            return StreamBuilder<double>(
                 stream: currentPositionStream.stream,
                 builder: (context, snapshot) {
-                  var currPos = snapshot.hasData ? snapshot.data : position;
+                  var currPos = snapshot.hasData ? snapshot.data! : position;
                   var interpolation = interpolate(
                       currPos,
                       InterpolateConfig([
@@ -199,7 +200,7 @@ class _SnappingListViewState extends State<SnappingListView>
               child: widget.itemBuilder(
                   context, index, currItem > (index + 1.0) ? 2 : 0, maxSize));
         },
-        itemCount: widget.itemCount + 1,
+        itemCount: widget.itemCount! + 1,
         physics: dummy == DummyChangePhysics.H
             ? DummyHScrollPhysics(
                 mainAxisStartPadding: startPadding + defaultPadding,

@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 /// visible in background 
 class TransparentRoute extends PageRoute<void> {
   TransparentRoute({
-    @required this.builder,
-    RouteSettings settings,
+    required this.builder,
+    RouteSettings? settings,
   })  : assert(builder != null),
         super(settings: settings, fullscreenDialog: false);
 
@@ -15,10 +15,10 @@ class TransparentRoute extends PageRoute<void> {
   bool get opaque => false;
 
   @override
-  Color get barrierColor => null;
+  Color? get barrierColor => null;
 
   @override
-  String get barrierLabel => null;
+  String? get barrierLabel => null;
 
   @override
   bool get maintainState => true;
@@ -31,7 +31,7 @@ class TransparentRoute extends PageRoute<void> {
       Animation<double> secondaryAnimation) {
     final result = builder(context);
     return FadeTransition(
-      opacity: tween.animate(animation),
+      opacity: tween.animate(animation) as Animation<double>,
       child: Semantics(
         scopesRoute: true,
         explicitChildNodes: true,
