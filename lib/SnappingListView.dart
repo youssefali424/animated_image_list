@@ -36,7 +36,7 @@ class SnappingListView extends StatefulWidget {
       required this.maxExtent})
       : assert(itemExtent > 0),
         assert(maxExtent > 0),
-        assert(maxExtent > itemExtent);
+        assert(maxExtent >= itemExtent);
 
   @override
   createState() => _SnappingListViewState();

@@ -41,8 +41,7 @@ class AnimatedImageList extends StatelessWidget {
       this.itemExtent = 150,
       this.maxExtent = 400,
       this.scrollDirection = Axis.vertical})
-      : assert(images != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

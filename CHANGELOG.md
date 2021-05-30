@@ -5,5 +5,6 @@
 
 ## [1.0.0] - null safety
 
-* Add sound null safety
-* migrate to flutter >= 2.0 
+* Migrate to sound null safety
+* Migrate to flutter >= 2.0 
+* Add an example project

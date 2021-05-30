@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  gesture_x_detector: 1.0.0-nullsafety.1
+  gesture_x_detector: ^1.0.0-nullsafety.1
 
 dev_dependencies:
   flutter_test:
